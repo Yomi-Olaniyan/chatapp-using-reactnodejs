@@ -4,6 +4,9 @@ WORKDIR /public
 
 COPY . /public
 
+RUN npm config set fetch-timeout 600000 && \
+    npm config set fetch-retries 5
+
 RUN npm install
 
 ENV REACT_APP_LOCALHOST_KEY="chat-app-current-user"
