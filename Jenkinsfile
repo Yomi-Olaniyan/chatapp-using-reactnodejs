@@ -7,12 +7,16 @@ pipeline {
     stage("Clean Ups"){
         steps{
             sh 'docker-compose down'
+            
         }
     }
 
     stage('Build') {
       steps {
-        sh 'docker-compose build --no-cache'
+        sh '''
+           docker-compose build --no-cache
+           docker rm -f mongo || true
+           '''
       }
     }
 
